@@ -1,65 +1,97 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { Card, CardContent } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import Hero from "@/components/Hero";
+import QuickAccess from "@/components/landing/quickAccess";
+import Courses from "@/components/landing/courses";
+import GlowingCover from "@/components/landing/glowingCover";
+import MeteorsDemo from "@/components/meteors-demo";
+import { Meteors } from "@/components/ui/meteors";
+import * as motion from "motion/react-client";
+import CoursesContent from "@/components/courses-content";
+import CarouselContent from "@/components/courses-content";
+import { WavyBackground } from "@/components/ui/wavy-background";
+import Footer from "@/components/landing/footer";
+
+export default function Page() {
+  const carouselWrapper = useRef<HTMLDivElement>(null);
+  const carouselTrack = useRef<HTMLDivElement>(null);
+  const coursesRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // 🔥 COURSES ZOOM
+    const zoomTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: coursesRef.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    zoomTl
+      .to(coursesRef.current, {
+        scale: 3,
+        ease: "none",
+      })
+      .to(
+        coursesRef.current,
+        {
+          opacity: 0,
+          ease: "none",
+        },
+        0.5, // fade starts halfway through zoom
+      );
+
+    // 🔥 CAROUSEL (starts AFTER courses finishes)
+    gsap.fromTo(
+      carouselTrack.current,
+      { xPercent: 20 }, // 🔥 start off-screen right
+      {
+        xPercent: -80,
+        ease: "none",
+        scrollTrigger: {
+          trigger: carouselWrapper.current,
+          start: "top top",
+          end: "+=1500",
+          scrub: 1,
+          pin: true,
+        },
+      },
+    );
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div>
+      {/* HERO */}
+      <section className="h-screen flex items-center justify-center bg-purple-500 text-white text-6xl font-bold">
+        <Hero></Hero>
+      </section>
+      <section className="flex items-center justify-center bg-blue-500 text-white text-6xl font-bold">
+        <QuickAccess></QuickAccess>
+      </section>
+      <section
+        ref={coursesRef}
+        className="h-screen relative flex items-center justify-center bg-green-500 text-white text-6xl font-bold"
+      >
+        <Courses></Courses>
+      </section>
+      {/* CAROUSEL STORY */}
+      <section ref={carouselWrapper}>
+        <div className="fixed mt-70 inset-0 -z-10 pointer-events-none">
+          <WavyBackground />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+        <CarouselContent ref={carouselTrack} slides={4}></CarouselContent>
+      </section>
+      <section className="h-screen flex items-center justify-center bg-[#015871] text-white text-6xl font-bold">
+        <Footer></Footer>
+      </section>
     </div>
   );
 }
