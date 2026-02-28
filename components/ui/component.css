@@ -18,66 +18,73 @@
   animation: meteor 5s linear infinite;
 }
 
-.ocean {
-  height: 5%;
+@keyframes move_wave {
+  0% {
+    transform: translateX(0) translateZ(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(-25%) translateZ(0) scaleY(0.55);
+  }
+  100% {
+    transform: translateX(-50%) translateZ(0) scaleY(1);
+  }
+}
+.waveWrapper {
+  overflow: hidden;
+  position: absolute;
   width: 100%;
-  position: absolute;
+  left: 0;
+  right: 0;
   bottom: 0;
-  left: 0;
-  background: #015871;
+  top: 0;
+  margin: auto;
 }
-
-.wave {
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg)
-    repeat-x;
+.waveWrapperInner {
   position: absolute;
-  width: 6400px;
-  top: -198px;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  bottom: -1px;
+  background-image: linear-gradient(to top, #103250 20%, #27273c00 80%);
+}
+.bgTop {
+  z-index: 15;
+  opacity: 0.5;
+}
+.bgMiddle {
+  z-index: 10;
+  opacity: 0.75;
+}
+.bgBottom {
+  z-index: 5;
+}
+.wave {
+  position: absolute;
   left: 0;
-  height: 300px;
-  transform: translate(0, 0, 0);
-  animation: wave 7s ease infinite;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat no-repeat;
+  background-position: 0 bottom;
+  transform-origin: center bottom;
 }
-
-.wave:nth-of-type(2) {
-  top: -168px;
-  animation: swell 4s ease infinite;
-  opacity: 1;
+.waveTop {
+  background-size: 50% 100px;
 }
-
-@keyframes wave {
-  0% {
-    margin-left: 0;
-  }
-  100% {
-    margin-left: -1600px;
-  }
+.waveAnimation .waveTop {
+  animation: move-wave 3s;
+  -webkit-animation: move-wave 3s;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
 }
-@keyframes swell {
-  0%,
-  100% {
-    transform: translate(0, -30px);
-  }
-  50% {
-    transform: translate(0, 5px);
-  }
+.waveMiddle {
+  background-size: 50% 120px;
 }
-
-@keyframes gradient-move {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+.waveAnimation .waveMiddle {
+  animation: move_wave 10s linear infinite;
 }
-
-.animate-gradient-move {
-  background-size: 200% 200%;
-  animation: gradient-move 8s ease infinite;
+.waveBottom {
+  background-size: 50% 100px;
+}
+.waveAnimation .waveBottom {
+  animation: move_wave 15s linear infinite;
 }

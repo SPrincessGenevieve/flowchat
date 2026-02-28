@@ -68,28 +68,35 @@ export default function Page() {
   }, []);
 
   return (
-    <div>
+    <div className="bg-linear-60 from-primary-blue-600 via-5% via-primary-blue-400 to-primary-blue-500">
       {/* HERO */}
-      <section className="h-screen flex items-center justify-center bg-purple-500 text-white text-6xl font-bold">
+      <section className="h-screen flex items-center justify-center bg-transparent text-white text-6xl font-bold">
         <Hero></Hero>
       </section>
-      <section className="flex items-center justify-center bg-blue-500 text-white text-6xl font-bold">
+
+      {/* QUICK ACCESS */}
+      <section className="flex items-center justify-center bg-transparent text-white text-6xl font-bold">
         <QuickAccess></QuickAccess>
       </section>
+
+      {/* COURSES */}
       <section
         ref={coursesRef}
-        className="h-screen relative flex items-center justify-center bg-green-500 text-white text-6xl font-bold"
+        className="h-screen bg-transparent relative flex items-center justify-center text-white text-6xl font-bold"
       >
         <Courses></Courses>
       </section>
+
       {/* CAROUSEL STORY */}
       <section ref={carouselWrapper}>
-        <div className="fixed mt-70 inset-0 -z-10 pointer-events-none">
+        <div className="fixed mt-70 inset-0 -right-4 -z-10 pointer-events-none">
           <WavyBackground />
         </div>
         <CarouselContent ref={carouselTrack} slides={4}></CarouselContent>
       </section>
-      <section className="h-screen flex items-center justify-center bg-[#015871] text-white text-6xl font-bold">
+
+      {/* FOOTER */}
+      <section className="min-h-50 h-auto flex items-center justify-center bg-white">
         <Footer></Footer>
       </section>
     </div>
