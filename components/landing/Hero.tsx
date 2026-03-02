@@ -1,8 +1,6 @@
-import React from "react";
-import GlowingCover from "./landing/glowingCover";
-import { Label } from "./ui/label";
-import { Card, CardContent } from "./ui/card";
-import { Button } from "./ui/button";
+import { Card, CardContent } from "../ui/card";
+import { Label } from "../ui/label";
+import { Button } from "../ui/button";
 import { IconArrowRight, IconBook, IconPoint } from "@tabler/icons-react";
 import Gallery from "./gallery";
 import * as motion from "motion/react-client";

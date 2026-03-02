@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ThreeDMarquee } from "./ui/3d-marquee";
+import { ThreeDMarquee } from "../ui/3d-marquee";
 
 export default function Gallery() {
   const images = [

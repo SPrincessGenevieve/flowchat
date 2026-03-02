@@ -1,31 +1,24 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { Card, CardContent } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import Hero from "@/components/Hero";
 import QuickAccess from "@/components/landing/quickAccess";
 import Courses from "@/components/landing/courses";
-import GlowingCover from "@/components/landing/glowingCover";
-import MeteorsDemo from "@/components/meteors-demo";
-import { Meteors } from "@/components/ui/meteors";
-import * as motion from "motion/react-client";
-import CoursesContent from "@/components/courses-content";
-import CarouselContent from "@/components/courses-content";
 import { WavyBackground } from "@/components/ui/wavy-background";
 import Footer from "@/components/landing/footer";
+import Hero from "@/components/landing/Hero";
+import CarouselContent from "@/components/landing/courses-content";
+import HeaderMenu from "@/components/header/HeaderMenu";
 
 export default function Page() {
   const carouselWrapper = useRef<HTMLDivElement>(null);
   const carouselTrack = useRef<HTMLDivElement>(null);
   const coursesRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // 🔥 COURSES ZOOM
     const zoomTl = gsap.timeline({
       scrollTrigger: {
         trigger: coursesRef.current,
@@ -46,13 +39,12 @@ export default function Page() {
           opacity: 0,
           ease: "none",
         },
-        0.5, // fade starts halfway through zoom
+        0.5,
       );
 
-    // 🔥 CAROUSEL (starts AFTER courses finishes)
-    gsap.fromTo(
+    const carouselAnim = gsap.fromTo(
       carouselTrack.current,
-      { xPercent: 20 }, // 🔥 start off-screen right
+      { xPercent: 20 },
       {
         xPercent: -80,
         ease: "none",
@@ -65,11 +57,16 @@ export default function Page() {
         },
       },
     );
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
   }, []);
 
   return (
-    <div className="bg-linear-60 from-primary-blue-600 via-5% via-primary-blue-400 to-primary-blue-500">
+    <div className="relative bg-linear-60 from-primary-blue-600 via-5% via-primary-blue-400 to-primary-blue-500">
       {/* HERO */}
+      <HeaderMenu></HeaderMenu>
       <section className="h-screen flex items-center justify-center bg-transparent text-white text-6xl font-bold">
         <Hero></Hero>
       </section>

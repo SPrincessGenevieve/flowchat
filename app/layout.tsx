@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import GlowingCover from "@/components/landing/glowingCover";
 import { Label } from "@/components/ui/label";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 

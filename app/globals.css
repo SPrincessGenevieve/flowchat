@@ -54,7 +54,7 @@
 }
 .saample {
   --primary-blue-100: #227dec;
-  --primary-blue-200: #00abe6;
+  --primary-blue-200: rgb(0, 171, 230);
   --primary-blue-300: #103250;
   --primary-blue-400: hwb(217 5% 79%);
   --primary-blue-500: oklch(17.682% 0.05127 273.208);

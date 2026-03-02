@@ -1,15 +1,12 @@
 "use client";
 
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Meteors } from "@/components/ui/meteors";
 import * as motion from "motion/react-client";
-import AnimatedPinDemo from "./3d-pin-demo";
-import { PinContainer } from "./ui/3d-pin";
-import { Label } from "./ui/label";
+import { Label } from "../ui/label";
 import Link from "next/link";
-import { Button } from "./ui/button";
-import { WavyBackground } from "./ui/wavy-background";
+import { Button } from "../ui/button";
 
 interface CarouselContentProps {
   slides?: number;
@@ -154,7 +151,7 @@ const CarouselContent = forwardRef<HTMLDivElement, CarouselContentProps>(
 
               <Card className="w-full overflow-hidden relative bg-primary-blue-400">
                 <CardContent className="w-full">
-                  <Meteors number={40} />
+                  <Meteors number={80} />
 
                   <motion.h1 className="text-2xl bg-linear-to-br from-purple-100 to-primary-blue-100 bg-clip-text text-left font-medium tracking-tight text-transparent">
                     {item.title}
