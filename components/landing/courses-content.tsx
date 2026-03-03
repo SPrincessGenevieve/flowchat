@@ -15,123 +15,87 @@ interface CarouselContentProps {
 const content = [
   {
     title: "Getting Started",
-    desc: "4 resources",
+    desc: "3 resources",
     lesson: [
       {
-        title: "FlowChat OS Overview",
-        link: "",
+        title: "SOP Growth Blueprint",
+        link: "/docs/blueprint",
       },
       {
-        title: "Account Setup Checklist",
-        link: "",
+        title: "VA Role & Daily Rhythm",
+        link: "/docs/va-role",
       },
       {
-        title: "Tool & Software Acccess",
-        link: "",
-      },
-      {
-        title: "First Week Success Path",
-        link: "",
+        title: "Platform Limits & Safety",
+        link: "/docs/limitations",
       },
     ],
   },
   {
     title: "Client Walkthrough",
-    desc: "4 resources",
+    desc: "2 resources",
     lesson: [
       {
-        title: "Client Onboarding Protocal",
-        link: "",
+        title: "Overview & Purpose",
+        link: "/docs/overview",
       },
       {
-        title: "Expectation Setting Guide",
-        link: "",
-      },
-      {
-        title: "Communication Standards",
-        link: "",
-      },
-      {
-        title: "Escalation Procedures",
-        link: "",
+        title: "Client Quick-Start Guide",
+        link: "/docs/client-guide",
       },
     ],
   },
   {
     title: "Growth System",
-    desc: "5 resources",
+    desc: "3 resources",
     lesson: [
       {
+        title: "Maturity Roadmap",
+        link: "/docs/maturity",
+      },
+      {
         title: "Weekly Growth Audit",
-        link: "",
+        link: "/docs/audit",
       },
       {
-        title: "KPI Tracking Dashboard",
-        link: "",
-      },
-      {
-        title: "Optimization Frameworks",
-        link: "",
-      },
-      {
-        title: "Scaling Playbooks",
-        link: "",
-      },
-      {
-        title: "ROI Reporting",
-        link: "",
+        title: "30-Day Optimization Review",
+        link: "/docs/optimization",
       },
     ],
   },
   {
-    title: "Playybooks & Reports",
-    desc: "4 resouces",
+    title: "Playbooks & Reports",
+    desc: "3 resouces",
     lesson: [
       {
-        title: "Script Library (20+ Scripts)",
-        link: "",
+        title: "Script Library",
+        link: "/docs/scripts",
       },
       {
         title: "Daily Operations Report",
-        link: "",
+        link: "/docs/report",
       },
       {
-        title: "Client Communication Templates",
-        link: "",
-      },
-      {
-        title: "Performance Review Communication Templates",
-        link: "",
+        title: "Best Practices & Skills",
+        link: "/docs/best-practices",
       },
     ],
   },
   {
     title: "VA Setup & Compliance",
-    desc: "6 resources",
+    desc: "3 resources",
     lesson: [
       {
-        title: "VA Job Description Template",
-        link: "",
+        title: "Pre-Call Protocol",
+        link: "/docs/setup",
       },
       {
-        title: "Hiring & Vetting Process",
-        link: "",
+        title: "Compliance & Limits",
+        link: "/docs/compliance",
       },
       {
-        title: "Training Curriculum",
-        link: "",
-      },
-      {
-        title: "Certification Program",
-        link: "",
-      },
-      {
-        title: "Quality Assurance Standards",
-        link: "",
-      },
-      {
-        title: "Compliance Checklist",
-        link: "",
+        title: "VA Certification Checklist",
+        link: "/docs/certification",
       },
     ],
   },

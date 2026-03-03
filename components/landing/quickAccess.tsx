@@ -22,31 +22,37 @@ const card = [
     icon: IconRocket,
     title: "SOP Growth Blueprint",
     desc: "Complete system roadmap",
+    link: "/docs/blueprint",
   },
   {
     icon: IconUsers,
     title: "VA Role & Daily Rhythm",
     desc: "Clear expectations & workflows",
+    link: "/docs/va-role",
   },
   {
     icon: IconChartArcs,
     title: "Daily Operations Report",
     desc: "Track execution in real-time",
+    link: "/docs/report",
   },
   {
     icon: IconTimeline,
     title: "Weekly Growth Audit",
     desc: "Optimize & improve continuously",
+    link: "/docs/audit",
   },
   {
     icon: IconBook,
     title: "Script Playbook",
     desc: "Every scenario handled",
+    link: "/docs/scripts",
   },
   {
     icon: IconMedal,
     title: "VA Certification",
     desc: "Verified expertise & standards",
+    link: "/docs/certification",
   },
 ];
 
@@ -82,7 +88,7 @@ export default function QuickAccess() {
               <div className="flex justify-center"></div>
               <div className="grid grid-cols-3 gap-8 max-w-300 w-full quick-access-cont">
                 {card.map((item, i) => (
-                  <Link href={""} target="_blank" key={i}>
+                  <Link href={item.link} target="_blank" key={i}>
                     <motion.div
                       initial={{ opacity: 0, scale: 0 }}
                       whileInView={{ opacity: 1, scale: 1 }}
