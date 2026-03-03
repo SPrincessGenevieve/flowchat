@@ -29,22 +29,22 @@ const config: Record<
   warning: {
     icon: <IconAlertTriangle className="h-4 w-4 shrink-0 mt-0.5" />,
     border: "border-yellow-500",
-    bg: "bg-yellow-50 dark:bg-yellow-950/30",
+    bg: "bg-yellow-400/10 dark:bg-yellow-950/30",
     iconColor: "text-yellow-600 dark:text-yellow-400",
     defaultTitle: "Warning",
   },
   danger: {
     icon: <IconXboxX className="h-4 w-4 shrink-0 mt-0.5" />,
     border: "border-red-500",
-    bg: "bg-red-50 dark:bg-red-950/30",
+    bg: "bg-red-600/20 dark:bg-red-950/30",
     iconColor: "text-red-600 dark:text-red-400",
     defaultTitle: "Important",
   },
   info: {
     icon: <IconInfoCircle className="h-4 w-4 shrink-0 mt-0.5" />,
     border: "border-blue-500",
-    bg: "bg-blue-50 dark:bg-blue-950/30",
-    iconColor: "text-blue-600 dark:text-blue-400",
+    bg: "bg-blue-800/30 dark:bg-blue-950/30",
+    iconColor: "text-blue-400 dark:text-blue-400",
     defaultTitle: "Note",
   },
   tip: {

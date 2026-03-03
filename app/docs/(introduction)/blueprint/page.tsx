@@ -79,7 +79,7 @@ const days = [
 export default function SopGrowthBlueprint() {
   return (
     <div className="flex justify-center overflow-auto w-full ">
-      <div className="w-[90%] h-full my-20 p-4">
+      <div className="h-full">
         <PageHeader
           tag="Getting Started"
           title="The FlowChat VA SOP Growth Blueprint"
@@ -94,7 +94,7 @@ export default function SopGrowthBlueprint() {
             <div className="grid gap-3 sm:grid-cols-2">
               {modules.map((m) => (
                 <Link key={m.number} href={m.href} className="">
-                  <Card className="group bg-primary-blue-400 border hover:bg-primary-blue-100/30 transition ease-in-out border-primary-blue-100/70 hover:border-primary-blue-100">
+                  <Card className="group h-full bg-primary-blue-400 border hover:bg-primary-blue-100/30 transition ease-in-out border-primary-blue-100/70 hover:border-primary-blue-100/70">
                     <CardContent>
                       <div className="flex items-start gap-3">
                         <Label className="text-2xl  font-bold text-white/40 leading-none group-hover:text-primary-blue-200 transition-colors">
@@ -131,7 +131,10 @@ export default function SopGrowthBlueprint() {
                 "Implement and manage FlowChat for a business as a daily operator.",
                 "Maintain, optimize, and scale the system responsibly over time.",
               ].map((item, i) => (
-                <Card className="group py-4 bg-primary-blue-400 border border-primary-blue-100/70 ">
+                <Card
+                  key={i}
+                  className="group py-4 bg-primary-blue-400 border border-primary-blue-100/70 "
+                >
                   <CardContent className="flex items-center gap-2">
                     <Label className="flex bg-primary-blue-100 h-5 w-5 shrink-0 items-center justify-center rounded-full text-white text-xs font-bold">
                       {i + 1}

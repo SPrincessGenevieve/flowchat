@@ -4,6 +4,7 @@ import "./globals.css";
 import GlowingCover from "@/components/landing/glowingCover";
 import { Label } from "@/components/ui/label";
 import { SidebarProvider } from "@/components/ui/sidebar";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} bg-primary-blue-500 antialiased`}
       >
         {children}
+        <Toaster></Toaster>
       </body>
     </html>
   );

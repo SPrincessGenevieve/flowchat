@@ -135,6 +135,12 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 1;
+  cursor: pointer;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -144,9 +150,39 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3b82f6, #6366f1);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2563eb, #4f46e5);
+}
+
 @media (max-width: 990px) {
   .quick-access-cont {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .menubar-doc {
+    display: flex;
+    flex-direction: row;
+  }
+  .doc-width {
+    width: 100%;
+  }
+  .doc-childen-cont {
+    padding-top: 0px;
   }
 }
 

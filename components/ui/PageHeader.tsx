@@ -13,11 +13,11 @@ export function PageHeader({ day, tag, title, description }: PageHeaderProps) {
   return (
     <div className="mb-8">
       {(day != null || tag) && (
-        <div className="mb-3">
+        <div className="mb-3 ">
           {day != null && (
             <Badge
               variant="outline"
-              className="text-xs font-semibold tracking-widest uppercase"
+              className="text-xs border-none font-bold bg-primary-blue-100 text-white tracking-widest uppercase"
             >
               Day {day}
             </Badge>
