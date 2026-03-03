@@ -42,22 +42,6 @@ export default function Page() {
         0.5,
       );
 
-    const carouselAnim = gsap.fromTo(
-      carouselTrack.current,
-      { xPercent: 20 },
-      {
-        xPercent: -80,
-        ease: "none",
-        scrollTrigger: {
-          trigger: carouselWrapper.current,
-          start: "top top",
-          end: "+=1500",
-          scrub: 1,
-          pin: true,
-        },
-      },
-    );
-
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };

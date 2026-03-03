@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Label } from "../ui/label";
 import { IconBolt, IconLogin } from "@tabler/icons-react";
 import { Button } from "../ui/button";
@@ -16,12 +16,40 @@ import SlidingTabs from "@/components/ui/SlidingTabs";
 import { Card, CardContent } from "../ui/card";
 import { Input } from "../ui/input";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Spinner } from "../ui/spinner";
+import { toast } from "sonner";
 
 export default function HeaderMenu() {
+  const [loadingVA, setLoadingVA] = useState(false);
+  const [loadingAdmin, setLoadingAdmin] = useState(false);
   const tabs = [
     { label: "Virtual Assistant", value: "va" },
     { label: "Admin", value: "admin" },
   ];
+
+  const router = useRouter();
+
+  const handleVA = () => {
+    try {
+      setLoadingVA(true);
+      router.push("/virtual-assistant/dashboard");
+      toast.success("Login successfully. Redirecting to dashboard...");
+    } catch (error) {
+    } finally {
+    }
+  };
+
+  const handleAdmin = () => {
+    try {
+      setLoadingAdmin(true);
+      router.push("/admin");
+      toast.success("Login successfully. Redirecting to dashboard...");
+    } catch (error) {
+    } finally {
+    }
+  };
+
   return (
     <div className="fixed  px-4 justify-between items-center flex top-0 z-100 bg-primary-blue-500/70 w-full h-14">
       <Link href={"/"}>
@@ -72,7 +100,11 @@ export default function HeaderMenu() {
                           type="password"
                         ></Input>
                       </div>
-                      <Button className="w-full bg-linear-90 from-primary-blue-100 to-primary-blue-200">
+                      <Button
+                        onClick={handleVA}
+                        className="w-full bg-linear-90 from-primary-blue-100 to-primary-blue-200"
+                      >
+                        {loadingVA && <Spinner></Spinner>}
                         Login
                       </Button>
                     </CardContent>
@@ -101,7 +133,11 @@ export default function HeaderMenu() {
                           type="password"
                         ></Input>
                       </div>
-                      <Button className="w-full bg-linear-90 from-primary-blue-100 to-primary-blue-200">
+                      <Button
+                        onClick={handleAdmin}
+                        className="w-full bg-linear-90 from-primary-blue-100 to-primary-blue-200"
+                      >
+                        {loadingAdmin && <Spinner></Spinner>}
                         Login
                       </Button>
                     </CardContent>

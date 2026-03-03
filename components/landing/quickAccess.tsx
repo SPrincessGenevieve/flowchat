@@ -77,7 +77,7 @@ export default function QuickAccess() {
                 <motion.h1 className="mt-8 text-5xl bg-linear-to-br from-purple-300 to-primary-blue-200 py-4 bg-clip-text text-center font-medium tracking-tight text-transparent">
                   Quick Access
                 </motion.h1>
-                <motion.p className="font-thin text-xl font-medium text-center">
+                <motion.p className="font-thin text-xl text-center">
                   Your essential tools and resources, one click away
                 </motion.p>
               </div>

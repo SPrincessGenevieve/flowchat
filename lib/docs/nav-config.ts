@@ -1,3 +1,11 @@
+import {
+  IconBook,
+  IconDashboard,
+  IconMap,
+  IconMedal,
+  IconSettings,
+} from "@tabler/icons-react";
+
 export interface NavItem {
   title: string;
   href: string;
@@ -7,6 +15,34 @@ export interface NavGroup {
   label: string;
   items: NavItem[];
 }
+
+export const navVA = [
+  {
+    label: "Dashboard",
+    href: "/virtual-assistant/dashboard",
+    icon: IconDashboard,
+  },
+  {
+    label: "My Journey",
+    href: "/virtual-assistant/my-journey",
+    icon: IconMap,
+  },
+  {
+    label: "Certifications",
+    href: "/virtual-assistant/certifications",
+    icon: IconMedal,
+  },
+  {
+    label: "Resources",
+    href: "/virtual-assistant/resources",
+    icon: IconBook,
+  },
+  {
+    label: "Settings",
+    href: "/virtual-assistant/settings",
+    icon: IconSettings,
+  },
+];
 
 export const navConfig: NavGroup[] = [
   {

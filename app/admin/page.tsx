@@ -1,7 +1,10 @@
-import React from 'react'
+import { Label } from "@/components/ui/label";
+import React from "react";
 
 export default function Admin() {
   return (
-    <div>page</div>
-  )
+    <div>
+      <Label>ADMIN PAGE</Label>
+    </div>
+  );
 }
