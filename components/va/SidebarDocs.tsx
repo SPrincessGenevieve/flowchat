@@ -2,19 +2,15 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { navConfig, navVA } from "@/lib/docs/nav-config";
+import { navVA } from "@/lib/docs/nav-config";
 import { cn } from "@/lib/utils";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
   SidebarHeader,
   SidebarMenuItem,
-  SidebarRail,
 } from "@/components/ui/sidebar";
 import { Label } from "../ui/label";
-import { IconBolt } from "@tabler/icons-react";
 import { useState } from "react";
 import { Spinner } from "../ui/spinner";
 import { useTransition } from "react";

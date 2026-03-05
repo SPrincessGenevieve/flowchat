@@ -15,7 +15,7 @@ export default function ProgressSection() {
   return (
     <Card className="bg-black/20 border border-primary-blue-200/70 h-auto">
       <CardContent className="flex flex-col gap-4">
-        <div className="flex w-full justify-between items-center">
+        <div className="flex w-full flex-wrap gap-4 justify-between items-center">
           <div className="flex flex-col gap-2">
             <Label className="text-xl font-semibold">Overall Progress</Label>
             <Label className="font-normal">

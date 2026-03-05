@@ -1,5 +1,6 @@
 import {
   IconBook,
+  IconClipboard,
   IconDashboard,
   IconMap,
   IconMedal,
@@ -23,19 +24,14 @@ export const navVA = [
     icon: IconDashboard,
   },
   {
-    label: "My Journey",
-    href: "/virtual-assistant/my-journey",
+    label: "Certification",
+    href: "/virtual-assistant/certifications",
     icon: IconMap,
   },
   {
-    label: "Certifications",
-    href: "/virtual-assistant/certifications",
-    icon: IconMedal,
-  },
-  {
-    label: "Resources",
-    href: "/virtual-assistant/resources",
-    icon: IconBook,
+    label: "EOD Reports",
+    href: "/virtual-assistant/eod-reports",
+    icon: IconClipboard,
   },
   {
     label: "Settings",

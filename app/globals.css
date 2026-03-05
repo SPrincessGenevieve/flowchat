@@ -11,6 +11,7 @@
   --color-primary-blue-400: oklch(22.847% 0.05516 259.661);
   --color-primary-blue-500: oklch(17.682% 0.05127 273.208);
   --color-primary-blue-600: oklch(12.88% 0.04062 264.709);
+  --primary-green-100: #08f300;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
@@ -53,7 +54,7 @@
   --radius-4xl: calc(var(--radius) + 16px);
 }
 .saample {
-  --primary-blue-100: #227dec;
+  --primary-blue-100: #ffffff6c;
   --primary-blue-200: rgb(0, 171, 230);
   --primary-blue-300: #103250;
   --primary-blue-400: hwb(217 5% 79%);
@@ -67,6 +68,7 @@
   --primary-blue-400: oklch(22.847% 0.05516 259.661);
   --primary-blue-500: oklch(17.682% 0.05127 273.208);
   --primary-blue-600: oklch(12.88% 0.04062 264.709);
+  --primary-green-100: #08f300;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -173,6 +175,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 }
 
+@media (max-width: 1185px) {
+  .course-cont {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 810px) {
+  .course-cont {
+    grid-template-columns: repeat(1, 1fr);
+    background-color: transparent;
+  }
+}
+
 @media (max-width: 767px) {
   .menubar-doc {
     display: flex;
@@ -216,6 +231,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .row-to-col {
     flex-direction: column;
   }
+  .course-cont {
+    padding: 2px;
+  }
+  .module-cont {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 @media (max-width: 600px) {
@@ -234,6 +255,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .section-l1-l {
     z-index: 20;
     background-color: rgba(0, 0, 0, 0.326);
+  }
+  .course-icon {
+    display: none;
   }
 }
 

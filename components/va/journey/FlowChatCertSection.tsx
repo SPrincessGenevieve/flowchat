@@ -6,9 +6,11 @@ import React from "react";
 
 export default function FlowChatCertSection() {
   return (
-    <Card className={`w-full bg-primary-blue-100/30 border-primary-blue-100`}>
+    <Card
+      className={`w-full bg-primary-blue-100/30 border-primary-blue-100 opacity-70`}
+    >
       <CardContent className="flex gap-4">
-        <div>
+        <div className="course-icon">
           <div className="bg-blue-500/40 p-2 rounded-xl">
             <IconAward className="text-white" size={40}></IconAward>
           </div>
@@ -31,14 +33,14 @@ export default function FlowChatCertSection() {
               </Label>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <Button>Start Certification</Button>
             <Button
               variant={"outline"}
               className="bg-transparent hover:bg-primary-blue-100/20 hover:text-white border text-blue-100 border-primary-blue-100"
             >
               <IconLock></IconLock>
-              Complete all modules first
+              Complete Modules
             </Button>
           </div>
         </div>

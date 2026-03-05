@@ -101,57 +101,51 @@ const content = [
   },
 ];
 
-const CarouselContent = forwardRef<HTMLDivElement, CarouselContentProps>(
-  ({ slides = 4 }, ref) => {
-    return (
-      <div ref={ref} className="flex w-[500vw] h-screen bg-transparent">
-        {content.map((item, i) => (
-          <div
-            key={i}
-            className="w-screen h-screen flex-shrink-0 flex flex-col items-center justify-start p-8"
-          >
-            <div className="max-w-300 w-full min-h-20 relative flex flex-col items-center justify-center">
-              <div className="w-full h-20 rounded-full shadow-[0_0_100px_20px_rgb(12,123,121)] absolute bg-white"></div>
+import React from "react";
+import { IconArrowRight } from "@tabler/icons-react";
 
-              <Card className="w-full overflow-hidden relative bg-primary-blue-400">
-                <CardContent className="w-full">
-                  <Meteors number={80} />
+export default function CoursesContent() {
+  return (
+    <div className="grid grid-cols-3 course-cont gap-8 p-8">
+      {content.map((item, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0.0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: 0.3,
+            duration: 0.8,
+            ease: "easeInOut",
+          }}
+          className="flex"
+        >
+          <Card className="h-auto w-full  bg-primary-blue-100/10">
+            <CardContent className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">{item.title}</Label>
+                <Label className="font-normal text-[12px] text-white/30">
+                  {item.desc}
+                </Label>
+              </div>
 
-                  <motion.h1 className="text-2xl bg-linear-to-br from-purple-100 to-primary-blue-100 bg-clip-text text-left font-medium tracking-tight text-transparent">
-                    {item.title}
-                  </motion.h1>
-
-                  <motion.p className="text-sm text-white font-thin text-left">
-                    {item.desc}
-                  </motion.p>
-                </CardContent>
-              </Card>
-            </div>
-            <div className="w-full flex flex-col gap-4 mt-8">
-              {item.lesson.map((item2, ii) => (
-                <Link
-                  key={ii}
-                  href={item2.link}
-                  className="w-full flex items-center justify-center"
-                >
-                  <Card className="w-full max-w-300 bg-linear-90 p-1 rounded-sm from-violet-300 via-blue-100 to-primary-blue-100 shadow-[0_0_20px_0px_rgb(12,123,121)]">
-                    <CardContent className="bg-primary-blue-500 p-4 rounded-sm h-full flex gap-2 justify-between items-center">
-                      <Label>{item2.title}</Label>
-                      <Button className="bg-linear-90 h-8 from-primary-blue-200 to-primary-blue-100">
-                        View SOP
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  },
-);
-
-CarouselContent.displayName = "CarouselContent";
-
-export default CarouselContent;
+              <div className="flex flex-col gap-2">
+                {item.lesson.map((item2, ii) => (
+                  <div
+                    key={ii}
+                    className="flex justify-between gap-2 py-2  border-b-2 border-transparent hover:border-primary-blue-100 transition ease-in-out"
+                  >
+                    <Label>{item2.title}</Label>
+                    <IconArrowRight
+                      className="text-white"
+                      size={16}
+                    ></IconArrowRight>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
