@@ -14,167 +14,27 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { useModule } from "@/context/ModuleContext";
+import { useUserContext } from "@/context/UserContext";
 import { slugify } from "@/lib/slug";
+import { ModuleT } from "@/lib/type";
 import { cn } from "@/lib/utils";
 import { IconBulb, IconChevronDown, IconLink } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const module = [
-  {
-    module: "Getting Started",
-    desc: "3 modules",
-    lessons: [
-      {
-        label: "Strategic Roadmap",
-        desc_label:
-          "Client Walkthrough & VA Management Guide. This document covers everything the VA needs to set up FlowChat correctly, run daily operations, manage conversations, maintain account health, and optimize performance monthly.",
-        href: "/docs/overview",
-      },
-      {
-        label: "Operational System",
-        desc_label:
-          "The VA is not just sending messages. The VA is managing a lead pipeline and a client relationship every single day.",
-        href: "/docs/va-role",
-      },
-      {
-        label: "The Playbook",
-        desc_label:
-          "Automation reduces workload. Conversion requires human skill. Day 3 covers everything that happens once a lead replies from first response through booking a call.",
-        href: "/docs/day/3",
-      },
-    ],
-  },
-  {
-    module: "Client Walkthrough",
-    desc: "4 modules",
-    lessons: [
-      {
-        label: "Day 1: Overview & Strategy",
-        desc_label:
-          "The objective of Day 1 is to align the client with the 4-step FlowChat system before any technical setup begins.",
-        href: "",
-      },
-      {
-        label: "Day 2: Lead Import",
-        desc_label:
-          "Set up the lead pipeline from scratch. Define who you are targeting, where you are finding them, and how the automation handles each stage of the friend request and first message flow.",
-        href: "",
-      },
-      {
-        label: "Day 3: Manual Messaging",
-        desc_label:
-          "Automation reduces workload. Conversion requires human skill. Day 3 covers everything that happens once a lead replies from first response through booking a call.",
-        href: "",
-      },
-      {
-        label: "Day 4: Automation & Scaling",
-        desc_label:
-          "With the foundation set, Day 4 focuses on configuring automation correctly, understanding how the pipeline scales, and connecting outreach volume directly to revenue outcomes.",
-        href: "",
-      },
-    ],
-  },
-  {
-    module: "Operations",
-    desc: "4 modules",
-    lessons: [
-      {
-        label: "Lead Qualification Logic",
-        desc_label:
-          "After the first 30 days of running FlowChat, conduct a structured review of every key metric. Use this review to identify exactly where the pipeline is leaking and make targeted adjustments.",
-        href: "",
-      },
-      {
-        label: "Ghosting Protocols",
-        desc_label:
-          "FlowChat operates within platform rules. Violating these rules risks temporary blocks, messaging restrictions, or a permanent ban. The VA is responsible for maintaining account health at all times.",
-        href: "",
-      },
-      {
-        label: "Appointment Setting Flows",
-        desc_label:
-          "Complete every item in this checklist before the client session and before any automation is turned on.",
-        href: "",
-      },
-      {
-        label: "Reporting & Analytics",
-        desc_label: "",
-        href: "",
-      },
-    ],
-  },
-  {
-    module: "Management",
-    desc: "1 modules",
-    lessons: [
-      {
-        label: "VA Management Best Practices",
-        desc_label:
-          "The VA is not just sending messages. The VA is managing a lead pipeline and a client relationship every single day.",
-        href: "",
-      },
-    ],
-  },
-  {
-    module: "Safety",
-    desc: "2 modules",
-    lessons: [
-      {
-        label: "Crisis Management Protocols",
-        desc_label:
-          "FlowChat operates within platform rules. Violating these rules risks temporary blocks, messaging restrictions, or a permanent ban. The VA is responsible for maintaining account health at all times.",
-        href: "",
-      },
-      {
-        label: "Account Safety & Compliance",
-        desc_label:
-          "Complete every item in this checklist before the client session and before any automation is turned on.",
-        href: "",
-      },
-    ],
-  },
-  {
-    module: "Tech",
-    desc: "1 modules",
-    lessons: [
-      {
-        label: "Custom CRM Integrations",
-        desc_label:
-          "After the first 30 days of running FlowChat, conduct a structured review of every key metric. Use this review to identify exactly where the pipeline is leaking and make targeted adjustments.",
-        href: "",
-      },
-    ],
-  },
-  {
-    module: "Communication",
-    desc: "1 modules",
-    lessons: [
-      {
-        label: "Rebuttal Mastery",
-        desc_label:
-          "After the first 30 days of running FlowChat, conduct a structured review of every key metric. Use this review to identify exactly where the pipeline is leaking and make targeted adjustments.",
-        href: "",
-      },
-    ],
-  },
-  {
-    module: "Certification",
-    desc: "1 modules",
-    lessons: [
-      {
-        label: "Certification Final Review",
-        desc_label:
-          "Complete every item in this checklist before the client session and before any automation is turned on.",
-        href: "",
-      },
-    ],
-  },
-];
+export const getTotalCompleted = (modules: ModuleT[]) => {
+  return modules.reduce((acc, module) => {
+    return (
+      acc +
+      module.lessons.filter((lesson) => lesson.status === "Complete").length
+    );
+  }, 0);
+};
 
 export default function Modules() {
   const router = useRouter();
   const { modules } = useModule();
+  const { setUserDetails } = useUserContext();
   const [collapse, setCollapse] = useState<number | null>(null);
   const [waiting, setWaiting] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
@@ -247,6 +107,17 @@ export default function Modules() {
     // window.open(href, "_blank", "noopener,noreferrer");
   };
 
+
+
+  const mod = modules.find((i) => i.status === "Pending");
+  const less = mod?.lessons.find((i) => i.status === "Pending");
+
+  useEffect(() => {
+    setUserDetails({
+      currentLesson: `/virtual-assistant/certifications/${mod?.id}/lesson/${less?.id}`,
+    });
+  }, [modules]);
+
   return (
     <div className="flex flex-col gap-8 mb-8">
       <Label className="text-xl">Core Modules</Label>
@@ -254,7 +125,6 @@ export default function Modules() {
         {modules.map((item, i) => {
           const isOpen = collapse === i;
           const progress = getProgress(item.lessons);
-          console.log("DATA: ", item.title, item.lessons);
 
           return (
             <Card
@@ -306,7 +176,7 @@ export default function Modules() {
                       {item.lessons.map((lesson, idx) => (
                         <Card
                           key={idx}
-                          className={`${lesson.isLocked ? "bg-primary-blue-100/10" : "bg-primary-blue-100/20 hover:bg-primary-blue-100/50"}    transition ease-in-out p-0`}
+                          className={`${lesson.isLocked ? "bg-primary-blue-100/10" : "bg-primary-blue-100/20 hover:bg-primary-blue-100/40"}    transition ease-in-out p-0`}
                         >
                           <CardContent className="p-4 flex flex-col justify-between h-full">
                             <div className="py-2 flex flex-col gap-2">

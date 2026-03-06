@@ -10,6 +10,8 @@ import {
 
 type UserContextType = {
   token: string;
+  module_completed: number;
+  currentLesson: string;
   setUserDetails: (
     details:
       | Partial<UserContextType>
@@ -19,6 +21,8 @@ type UserContextType = {
 
 const defaultUserContext: UserContextType = {
   token: "",
+  currentLesson: "",
+  module_completed: 0,
   setUserDetails: () => {},
 };
 

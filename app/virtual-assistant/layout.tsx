@@ -9,9 +9,7 @@ function VAContent({ children }: { children: React.ReactNode }) {
   const { toggleSidebar } = useSidebar();
   const pathname = usePathname();
 
-  const showSidebar =
-    pathname.startsWith("/virtual-assistant/certifications") &&
-    !pathname.includes("/lesson");
+  const showSidebar = !pathname.includes("/lesson");
 
   return (
     <div className="flex relative w-full h-screen">

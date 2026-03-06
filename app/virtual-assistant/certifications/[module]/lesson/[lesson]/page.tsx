@@ -38,8 +38,6 @@ export default function ModulesPage() {
   const params = useParams();
   const [open, setOpen] = useState(false);
 
-  console.log("OPEN: ", open);
-
   const paramModule = params.module;
   const paramLesson = params.lesson;
 
