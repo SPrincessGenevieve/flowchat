@@ -16,7 +16,7 @@ import { Label } from "@/components/ui/label";
 import { useModule } from "@/context/ModuleContext";
 import { slugify } from "@/lib/slug";
 import { cn } from "@/lib/utils";
-import { IconChevronDown, IconLink } from "@tabler/icons-react";
+import { IconBulb, IconChevronDown, IconLink } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -176,14 +176,62 @@ export default function Modules() {
   const router = useRouter();
   const { modules } = useModule();
   const [collapse, setCollapse] = useState<number | null>(null);
+  const [waiting, setWaiting] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(0);
+
   const getProgress = (lessons: any[]) => {
-    const completed = lessons.filter((l) => l.isCompleted).length;
+    const completed = lessons.filter((l) => l.status === "Complete").length;
     return Math.round((completed / lessons.length) * 100);
   };
 
   useEffect(() => {
     localStorage.setItem("is_open", JSON.stringify(false));
+
+    const waitStart = localStorage.getItem("quiz_wait_start");
+
+    if (waitStart) {
+      const start = Number(waitStart);
+      const now = Date.now();
+      const diff = now - start;
+
+      const waitDuration = 15 * 60 * 1000; // 15 minutes
+
+      if (diff < waitDuration) {
+        setWaiting(true);
+        setTimeLeft(waitDuration - diff);
+      } else {
+        localStorage.removeItem("quiz_wait_start");
+        setWaiting(false);
+      }
+    }
   }, []);
+
+  useEffect(() => {
+    if (!waiting) return;
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1000) {
+          clearInterval(timer);
+          setWaiting(false);
+          localStorage.removeItem("quiz_wait_start");
+          return 0;
+        }
+
+        return prev - 1000;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [waiting]);
+
+  const formatTime = (ms: number) => {
+    const totalSeconds = Math.floor(ms / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+  };
 
   const toggle = (index: number) => {
     setCollapse(collapse === index ? null : index);
@@ -205,6 +253,8 @@ export default function Modules() {
       <div className="flex flex-col gap-4 w-full">
         {modules.map((item, i) => {
           const isOpen = collapse === i;
+          const progress = getProgress(item.lessons);
+          console.log("DATA: ", item.title, item.lessons);
 
           return (
             <Card
@@ -229,7 +279,12 @@ export default function Modules() {
                   <div className="flex w-full items-center justify-center gap-4">
                     <div className="flex flex-col gap-2 justify-center items-end w-full">
                       <Label>{getProgress(item.lessons)}%</Label>
-                      <div className="w-30 h-2 rounded-full bg-primary-blue-100/20"></div>
+                      <div className="w-30 h-2 rounded-full overflow-hidden bg-primary-blue-100/20">
+                        <div
+                          style={{ width: `${progress}%` }}
+                          className={` bg-primary-blue-100 h-full`}
+                        ></div>
+                      </div>
                     </div>
 
                     <IconChevronDown
@@ -269,13 +324,36 @@ export default function Modules() {
                               </Button>
                               <Dialog>
                                 <DialogTrigger
-                                  disabled={lesson.isLocked ? true : false}
+                                  disabled={
+                                    lesson.isLocked
+                                      ? true
+                                      : lesson.status === "Complete"
+                                        ? true
+                                        : waiting
+                                  }
                                 >
                                   <Button
-                                    disabled={lesson.isLocked ? true : false}
-                                    className="w-40 cursor-pointer"
+                                    disabled={
+                                      lesson.isLocked
+                                        ? true
+                                        : lesson.status === "Complete"
+                                          ? false
+                                          : waiting
+                                    }
+                                    variant={
+                                      lesson.status === "Complete"
+                                        ? "ghost"
+                                        : "default"
+                                    }
+                                    className={`w-40 cursor-pointer ${lesson.status === "Complete" ? "bg-linear-90 from-green-500 hover:text-white to-green-700 text-white" : ""}`}
                                   >
-                                    {lesson.isLocked ? "Locked" : "Take Quiz"}
+                                    {lesson.isLocked
+                                      ? "Locked"
+                                      : lesson.status === "Complete"
+                                        ? "Completed"
+                                        : waiting
+                                          ? `Retry in ${formatTime(timeLeft)}`
+                                          : "Take Quiz"}
                                   </Button>
                                 </DialogTrigger>
                                 <DialogContent
@@ -287,36 +365,49 @@ export default function Modules() {
                                         Start Certification Exam
                                       </Label>
                                     </DialogTitle>
-                                    <DialogDescription>
+                                    <DialogDescription className="flex flex-col gap-4">
                                       <Label className="text-white/70 font-normal leading-5">
                                         You’re about to begin this certification
                                         exam. Make sure you’re ready, as your
                                         progress will be recorded once you
                                         start.
                                       </Label>
+                                      <div className="bg-primary-blue-200/20 rounded-xl p-2 flex items-center gap-4">
+                                        <IconBulb
+                                          className="text-white"
+                                          size={40}
+                                        ></IconBulb>
+                                        <Label className="leading-5 font-normal ">
+                                          Complete the quiz with 80% or higher
+                                          to mark this lesson complete and
+                                          unlock the next lesson.
+                                        </Label>
+                                      </div>
                                     </DialogDescription>
                                   </DialogHeader>
-                                  <DialogFooter>
-                                    <DialogClose>
-                                      <Button
-                                        className="bg-transparent border border-primary-blue-100 hover:bg-primary-blue-100/20 hover:text-white text-primary-blue-100"
-                                        variant={"ghost"}
-                                      >
-                                        Back
-                                      </Button>
-                                    </DialogClose>
-                                    <DialogClose>
-                                      <Button
-                                        onClick={() =>
-                                          handleStart(
-                                            slugify(item.title),
-                                            slugify(lesson.title),
-                                          )
-                                        }
-                                      >
-                                        Start Exam
-                                      </Button>
-                                    </DialogClose>
+                                  <DialogFooter className="">
+                                    <div className="flex gap-2 justify-end">
+                                      <DialogClose>
+                                        <Button
+                                          className="bg-transparent border border-primary-blue-100 hover:bg-primary-blue-100/20 hover:text-white text-primary-blue-100"
+                                          variant={"ghost"}
+                                        >
+                                          Back
+                                        </Button>
+                                      </DialogClose>
+                                      <DialogClose>
+                                        <Button
+                                          onClick={() =>
+                                            handleStart(
+                                              slugify(item.title),
+                                              slugify(lesson.title),
+                                            )
+                                          }
+                                        >
+                                          Start Exam
+                                        </Button>
+                                      </DialogClose>
+                                    </div>
                                   </DialogFooter>
                                 </DialogContent>
                               </Dialog>

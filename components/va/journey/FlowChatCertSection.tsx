@@ -34,7 +34,7 @@ export default function FlowChatCertSection() {
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <Button>Start Certification</Button>
+            {/* <Button>Start Certification</Button> */}
             <Button
               variant={"outline"}
               className="bg-transparent hover:bg-primary-blue-100/20 hover:text-white border text-blue-100 border-primary-blue-100"

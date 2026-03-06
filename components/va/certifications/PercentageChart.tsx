@@ -20,25 +20,34 @@ import { ChartContainer, type ChartConfig } from "@/components/ui/chart";
 
 export const description = "A radial chart with text";
 
-const chartData = [
-  { browser: "safari", score: 200, fill: "var(--color-safari)" },
-];
-
 interface ChartT {
   score: number;
   percent: number;
 }
 
 export function PercentageChart({ score, percent }: ChartT) {
+  const chartData = [
+    {
+      browser: "safari",
+      score: percent,
+      fill: percent < 80 ? "var(--destructive)" : "var(--primary-green-100)",
+    },
+  ];
+
   const chartConfig = {
     Score: {
       label: "Score",
     },
     safari: {
       label: "Safari",
-      color: score < 6.5 ? "var(--destructive)" : "var(--primary-green-100)",
+      color: percent < 80 ? "var(--destructive)" : "var(--primary-green-100)",
     },
   } satisfies ChartConfig;
+
+  const maxAngle = 360;
+  const endAngle = (percent / 100) * maxAngle;
+
+  console.log("end", endAngle);
 
   return (
     <ChartContainer
@@ -48,7 +57,7 @@ export function PercentageChart({ score, percent }: ChartT) {
       <RadialBarChart
         data={chartData}
         startAngle={0}
-        endAngle={250}
+        endAngle={endAngle}
         innerRadius={80}
         outerRadius={110}
       >
@@ -74,7 +83,7 @@ export function PercentageChart({ score, percent }: ChartT) {
                     <tspan
                       x={viewBox.cx}
                       y={viewBox.cy}
-                      className={`${score < 6.5 ? "fill-red-500" : "fill-red-500"} text-4xl font-bold`}
+                      className={`${percent < 80 ? "fill-red-500" : "fill-green-500"} text-4xl font-bold`}
                     >
                       {percent.toLocaleString()}%
                     </tspan>

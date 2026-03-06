@@ -25,9 +25,10 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export default function ModulesPage() {
-  const { modules, updateLessonStatus } = useModule();
+  const { modules, updateLessonStatus, completeLesson } = useModule();
   const router = useRouter();
   const [isResult, setIsResult] = useState(false);
+  const [examResult, setExamResult] = useState("");
   const [answers, setAnswers] = useState<
     { questionId: string; answer: string }[]
   >([]);
@@ -52,7 +53,7 @@ export default function ModulesPage() {
   )?.answer;
 
   useEffect(() => {
-    setIsLocked(lesson?.status ?? "Locked");
+    setIsLocked(lesson?.status ?? null);
   }, [lesson?.status]);
 
   useEffect(() => {
@@ -149,13 +150,17 @@ export default function ModulesPage() {
 
     if (passed) {
       updateLessonStatus(module?.id ?? "", lesson?.id ?? "", "Complete");
+      completeLesson(module?.id ?? "", lesson?.id ?? "");
+      localStorage.setItem("is_passed", JSON.stringify(true));
     } else {
       updateLessonStatus(module?.id ?? "", lesson?.id ?? "", "Pending");
+      localStorage.setItem("is_passed", JSON.stringify(false));
+      localStorage.setItem("quiz_wait_start", Date.now().toString());
     }
   };
 
   useEffect(() => {
-    if (open === true) {
+    if (isResult === true) {
       setTimeout(() => {
         localStorage.removeItem("quiz_answers");
         localStorage.removeItem("quiz_index");
@@ -165,27 +170,12 @@ export default function ModulesPage() {
         setQuestionIndex(0);
       }, 5000);
     }
-  }, [open]);
+  }, [isResult]);
 
   return (
     <div className=" space-y-6">
-      {isLocked === "Locked" ? (
-        <Card className="bg-primary-blue-100/20">
-          <CardContent className="flex flex-col gap-8">
-            <div className="flex flex-col gap-2">
-              <Label className="text-xl">Ready to test your knowledge?</Label>
-              <Label className="text-[14px] font-normal">
-                Complete the quiz with 80% or higher to mark this lesson
-                complete and unlock the next lesson.
-              </Label>
-            </div>
-            <div>
-              <Button onClick={handleStart}>Start Quiz ( 8 questions )</Button>
-            </div>
-          </CardContent>
-        </Card>
-      ) : isLocked === null ? (
-        <Skeleton className="w-full h-105 rounded-2xl"></Skeleton>
+      {isLocked === null ? (
+        <Skeleton className="w-full h-118 rounded-2xl"></Skeleton>
       ) : (
         <div className="flex flex-col gap-4 ">
           <Card className="bg-primary-blue-100/20 border border-primary-blue-100/70">
@@ -299,7 +289,7 @@ export default function ModulesPage() {
                           {isResult ? (
                             <div className="w-full flex items-center justify-center">
                               <Label className="font-normal">
-                                Redirecting to back...
+                                Redirecting you back...
                               </Label>
                             </div>
                           ) : (

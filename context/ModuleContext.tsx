@@ -44,35 +44,52 @@ export function ModuleProvider({ children }: { children: React.ReactNode }) {
   }, [modules]);
 
   const completeLesson = (moduleId: string, lessonId: string) => {
-    setModules((prev) =>
-      prev.map((mod) => {
-        if (mod.id !== moduleId) return mod;
+    setModules((prev) => {
+      const modulesCopy = prev.map((m) => ({
+        ...m,
+        lessons: m.lessons.map((l) => ({ ...l })),
+      }));
 
-        const lessons = mod.lessons.map((lesson) => ({ ...lesson }));
+      const moduleIndex = modulesCopy.findIndex((m) => m.id === moduleId);
 
-        const index = lessons.findIndex((l) => l.id === lessonId);
+      if (moduleIndex === -1) return prev;
 
-        if (index !== -1) {
-          lessons[index].status = "Complete";
+      const module = modulesCopy[moduleIndex];
+      const lessons = module.lessons;
 
-          if (index + 1 < lessons.length) {
-            lessons[index + 1].isLocked = false;
-            lessons[index + 1].status =
-              lessons[index + 1].status === "Locked"
-                ? "Pending"
-                : lessons[index + 1].status;
+      const lessonIndex = lessons.findIndex((l) => l.id === lessonId);
+
+      if (lessonIndex !== -1) {
+        lessons[lessonIndex].status = "Complete";
+
+        if (lessonIndex + 1 < lessons.length) {
+          lessons[lessonIndex + 1].isLocked = false;
+          lessons[lessonIndex + 1].status =
+            lessons[lessonIndex + 1].status === "Locked"
+              ? "Pending"
+              : lessons[lessonIndex + 1].status;
+        }
+      }
+
+      const allCompleted = lessons.every((l) => l.status === "Complete");
+
+      module.status = allCompleted ? "Complete" : "Pending";
+
+      // ⭐ NEW — Unlock next module first lesson
+      if (allCompleted && moduleIndex + 1 < modulesCopy.length) {
+        const nextModule = modulesCopy[moduleIndex + 1];
+
+        if (nextModule.lessons.length > 0) {
+          nextModule.lessons[0].isLocked = false;
+
+          if (nextModule.lessons[0].status === "Locked") {
+            nextModule.lessons[0].status = "Pending";
           }
         }
+      }
 
-        const allCompleted = lessons.every((l) => l.status === "Complete");
-
-        return {
-          ...mod,
-          lessons,
-          status: allCompleted ? "Complete" : "Pending",
-        };
-      }),
-    );
+      return modulesCopy;
+    });
   };
 
   const updateLessonStatus = (

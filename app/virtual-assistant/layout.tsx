@@ -1,17 +1,22 @@
 "use client";
-import { Label } from "@/components/ui/label";
 import { SidebarProvider, useSidebar } from "@/components/ui/sidebar";
 import SidebarVA from "@/components/va/SidebarDocs";
-import { IconBolt, IconMenu2 } from "@tabler/icons-react";
-import Link from "next/link";
+import { IconMenu2 } from "@tabler/icons-react";
 import React from "react";
+import { usePathname } from "next/navigation";
 
 function VAContent({ children }: { children: React.ReactNode }) {
   const { toggleSidebar } = useSidebar();
+  const pathname = usePathname();
+
+  const showSidebar =
+    pathname.startsWith("/virtual-assistant/certifications") &&
+    !pathname.includes("/lesson");
 
   return (
     <div className="flex relative w-full h-screen">
-      <SidebarVA />
+      {showSidebar && <SidebarVA />}
+
       <div className="w-full">
         <div className="menubar-doc w-full hidden items-center gap-2 bg-primary-blue-500 h-14 px-4 shadow-[0_2px_40px_0_rgb(0,122,122)]">
           <IconMenu2
