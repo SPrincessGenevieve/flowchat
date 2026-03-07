@@ -179,6 +179,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .course-cont {
     grid-template-columns: repeat(2, 1fr);
   }
+  .report-card-cont {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 810px) {
@@ -237,10 +240,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .module-cont {
     grid-template-columns: repeat(1, 1fr);
   }
+  .report-card-cont {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 @media (max-width: 600px) {
   .quick-access-cont {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .form-cont {
     grid-template-columns: repeat(1, 1fr);
   }
 }

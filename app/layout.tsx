@@ -7,6 +7,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { UserProvider } from "@/context/UserContext";
 import { ModuleProvider } from "@/context/ModuleContext";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -36,7 +37,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} bg-primary-blue-500 antialiased`}
       >
         <UserProvider>
-          <ModuleProvider>{children}</ModuleProvider>
+          <TooltipProvider>
+            <ModuleProvider>{children}</ModuleProvider>
+          </TooltipProvider>
         </UserProvider>
         <Toaster></Toaster>
       </body>

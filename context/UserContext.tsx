@@ -12,6 +12,7 @@ type UserContextType = {
   token: string;
   module_completed: number;
   currentLesson: string;
+  closeDialogReport: boolean;
   setUserDetails: (
     details:
       | Partial<UserContextType>
@@ -23,6 +24,7 @@ const defaultUserContext: UserContextType = {
   token: "",
   currentLesson: "",
   module_completed: 0,
+  closeDialogReport: false,
   setUserDetails: () => {},
 };
 
