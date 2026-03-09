@@ -14,6 +14,7 @@
     "@react-pdf/renderer": "^4.3.2",
     "@studio-freight/lenis": "^1.0.42",
     "@tabler/icons-react": "^3.37.1",
+    "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "gsap": "^3.14.2",

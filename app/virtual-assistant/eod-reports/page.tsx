@@ -10,6 +10,7 @@ import {
 import WelcomeSection from "@/components/va/dashboard/WelcomeSection";
 import { getTotalCompleted } from "@/components/va/journey/Modules";
 import CardSummary from "@/components/va/report/CardSummary";
+import ReportTable from "@/components/va/report/ReportTable";
 import SubmitReportDialog from "@/components/va/report/SubmitReportDialog";
 import { useModule } from "@/context/ModuleContext";
 import { useUserContext } from "@/context/UserContext";
@@ -58,6 +59,7 @@ export default function EODReports() {
       </div>
       <SubmitReportDialog open={open} setOpen={setOpen}></SubmitReportDialog>
       <CardSummary></CardSummary>
+      <ReportTable></ReportTable>
     </div>
   );
 }

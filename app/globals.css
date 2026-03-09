@@ -54,7 +54,7 @@
   --radius-4xl: calc(var(--radius) + 16px);
 }
 .saample {
-  --primary-blue-100: #ffffff6c;
+  --primary-blue-100: #217bec;
   --primary-blue-200: rgb(0, 171, 230);
   --primary-blue-300: #103250;
   --primary-blue-400: hwb(217 5% 79%);
