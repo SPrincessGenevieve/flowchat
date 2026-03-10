@@ -7,15 +7,21 @@ import { Spinner } from "@/components/ui/spinner";
 import { IconArrowRight } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { getTotalCompleted } from "../journey/Modules";
+import { useModule } from "@/context/ModuleContext";
 
 export default function ProgressSection() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const { modules } = useModule();
+  const completedCount = getTotalCompleted(modules);
+
+  const percent = ((completedCount / 17) * 100).toFixed(0);
 
   const handleJourney = () => {
     try {
       setLoading(true);
-      router.push("/virtual-assistant/my-journey");
+      router.push("/virtual-assistant/certifications");
     } catch (error) {
     } finally {
       setLoading(false);
@@ -30,9 +36,16 @@ export default function ProgressSection() {
           <div className="flex flex-col gap-2">
             <div className="w-full flex justify-between">
               <Label className="font-normal">Training Completion</Label>
-              <Label className="font-normal text-sm">0%</Label>
+              <Label className="font-normal text-sm">{percent}%</Label>
             </div>
-            <div className="w-full bg-primary-blue-100/20 h-4 rounded-full relataive"></div>
+            <div className="w-full overflow-hidden bg-primary-blue-100/20 h-4 rounded-full relataive">
+              <div
+                style={{
+                  width: `${percent}%`,
+                }}
+                className="h-full bg-primary-blue-100 rounded-full"
+              ></div>
+            </div>
           </div>
           <div className="my-4">
             <Label>

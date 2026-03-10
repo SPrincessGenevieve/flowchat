@@ -16,7 +16,7 @@ export default function JourneyCertSection() {
   const handleJourney = () => {
     try {
       setLoading(true);
-      router.push("/virtual-assistant/my-journey");
+      router.push("/virtual-assistant/certifications");
     } catch (error) {
     } finally {
       setLoading(false);
@@ -26,7 +26,7 @@ export default function JourneyCertSection() {
   const handleJourney2 = () => {
     try {
       setLoading2(true);
-      router.push("/virtual-assistant/my-journey");
+      router.push("/virtual-assistant/certifications");
     } catch (error) {
     } finally {
       setLoading2(false);

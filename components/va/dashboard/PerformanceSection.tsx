@@ -2,32 +2,38 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { useModule } from "@/context/ModuleContext";
 import { IconAward, IconBook, IconTimeline } from "@tabler/icons-react";
 import { style } from "motion/react-client";
 import React from "react";
-
-const performance = [
-  {
-    label: "Overall Progress",
-    icon: IconTimeline,
-    value: "0%",
-    style: "bg-primary-blue-100/30 border border-primary-blue-100",
-  },
-  {
-    label: "Total Modules",
-    icon: IconBook,
-    value: "19",
-    style: "bg-green-400/30 border border-green-400",
-  },
-  {
-    label: "Certification Status",
-    icon: IconAward,
-    value: "Locked",
-    style: "bg-purple-400/30 border border-purple-400",
-  },
-];
+import { getTotalCompleted } from "../journey/Modules";
 
 export default function PerformanceSection() {
+  const { modules } = useModule();
+  const completedCount = getTotalCompleted(modules);
+  const percent = ((completedCount / 17) * 100).toFixed(0);
+
+  const performance = [
+    {
+      label: "Overall Progress",
+      icon: IconTimeline,
+      value: `${percent}%`,
+      style: "bg-primary-blue-100/30 border border-primary-blue-100",
+    },
+    {
+      label: "Total Modules",
+      icon: IconBook,
+      value: "17",
+      style: "bg-green-400/30 border border-green-400",
+    },
+    {
+      label: "Certification Status",
+      icon: IconAward,
+      value: "Locked",
+      style: "bg-purple-400/30 border border-purple-400",
+    },
+  ];
+
   return (
     <div className="flex gap-4 row-to-col">
       {performance.map((item, i) => (

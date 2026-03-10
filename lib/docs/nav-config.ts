@@ -1,10 +1,13 @@
 import {
   IconBook,
+  IconChartBar,
   IconClipboard,
   IconDashboard,
+  IconLayoutDashboard,
   IconMap,
   IconMedal,
   IconSettings,
+  IconUsers,
 } from "@tabler/icons-react";
 
 export interface NavItem {
@@ -36,6 +39,34 @@ export const navVA = [
   {
     label: "Settings",
     href: "/virtual-assistant/settings",
+    icon: IconSettings,
+  },
+];
+
+export const navAdmin = [
+  {
+    label: "Dashboard",
+    href: "/admin/dashboard",
+    icon: IconLayoutDashboard,
+  },
+  {
+    label: "Virtual Assistants",
+    href: "/admin/virtual-assistant",
+    icon: IconUsers,
+  },
+  {
+    label: "Certifications",
+    href: "/admin/certifications",
+    icon: IconClipboard,
+  },
+  {
+    label: "EOD Management",
+    href: "/admin/eod-management",
+    icon: IconChartBar,
+  },
+  {
+    label: "Settings",
+    href: "/admin/settings",
     icon: IconSettings,
   },
 ];

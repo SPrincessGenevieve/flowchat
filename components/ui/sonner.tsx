@@ -16,7 +16,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
   return (
     <Sonner
       theme={theme as ToasterProps["theme"]}
-      position="top-right"
+      position="bottom-right"
       // richColors must be true for Sonner to apply type-based classes properly
       richColors={true}
       toastOptions={{

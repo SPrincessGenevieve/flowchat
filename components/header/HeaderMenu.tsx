@@ -43,7 +43,7 @@ export default function HeaderMenu() {
   const handleAdmin = () => {
     try {
       setLoadingAdmin(true);
-      router.push("/admin");
+      router.push("/admin/dashboard");
       toast.success("Login successfully. Redirecting to dashboard...");
     } catch (error) {
     } finally {

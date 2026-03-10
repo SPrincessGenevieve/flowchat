@@ -14,20 +14,17 @@ function AdminContent({ children }: { children: React.ReactNode }) {
     <div className="flex relative w-full h-full">
       <SidebarAdmin />
       <div className="w-full">
-        <Link
-          href="/"
-          className="menubar-doc w-full hidden items-center gap-2 fixed bg-primary-blue-500 h-14 px-4 shadow-[0_2px_40px_0_rgb(0,122,122)]"
-        >
+        <div className="menubar-doc w-full hidden items-center gap-2 fixed bg-primary-blue-500 h-14 px-4 shadow-[0_2px_40px_0_rgb(0,122,122)]">
           <IconMenu2
             onClick={toggleSidebar}
             className="text-white cursor-pointer"
           />
           <IconBolt className="text-white" />
           <Label>Flowchat SOP</Label>
-        </Link>
+        </div>
 
-        <div className="w-full doc-childen-cont flex justify-center">
-          <div className="doc-width w-[80%]  my-20 p-4">{children}</div>
+        <div className="w-full h-full flex justify-center ">
+          <div className="w-full p-8 ">{children}</div>
         </div>
       </div>
     </div>
