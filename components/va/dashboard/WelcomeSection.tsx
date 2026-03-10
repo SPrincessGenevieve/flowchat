@@ -10,7 +10,7 @@ export default function WelcomeSection({ title, desc }: WelcomeT) {
   return (
     <div className="flex flex-col gap-2">
       <Label className="text-3xl font-bold">{title}</Label>
-      <Label className="font-normal text-white/70">{desc}</Label>
+      <Label className="font-normal text-white/70 leading-5">{desc}</Label>
     </div>
   );
 }

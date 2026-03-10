@@ -300,6 +300,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 }
 
+@media (max-width: 460px) {
+  .admin-cert-cont {
+    flex-direction: column-reverse;
+    gap: 4vw;
+  }
+  .certified-stats-admin {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
 @media (max-width: 445px) {
   .user-details-cont {
     grid-template-columns: repeat(1, 1fr);

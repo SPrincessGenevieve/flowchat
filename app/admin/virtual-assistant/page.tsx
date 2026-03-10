@@ -1,9 +1,9 @@
 "use client";
 
+import AddVirtualAssistant from "@/components/admin/virtual-assistant/AddVirtualAssistant";
 import UserDetailsForm from "@/components/admin/virtual-assistant/UserDetailsForm";
 import UserPasswordForm from "@/components/admin/virtual-assistant/UserPasswordForm";
 import DynamicTable, { Column } from "@/components/DynamicTable";
-import PaginatedTable, { UserDetailT } from "@/components/PaginatedTable";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -21,12 +21,30 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toastUI } from "@/components/ui/Toaster";
 import WelcomeSection from "@/components/va/dashboard/WelcomeSection";
-import { IconDots, IconShield, IconShieldLock } from "@tabler/icons-react";
+import {
+  IconDots,
+  IconPlus,
+  IconShield,
+  IconShieldLock,
+} from "@tabler/icons-react";
 import { i } from "motion/react-client";
 import { Fragment, useEffect, useState } from "react";
+
+interface UserDetailT {
+  first_name: string;
+  last_name: string;
+  middle_name: string;
+  name_ext: string;
+  email: string;
+  contact_no: string;
+  status: string;
+  training: string;
+  certificate: boolean;
+}
 
 const mockData = [
   {
@@ -258,8 +276,6 @@ export default function VirtualAssisstantAdmin() {
     },
   ];
 
-  <DynamicTable<UserDetailT> data={mockData} columns={columns} />;
-
   useEffect(() => {
     setData(mockData[selectedIndex]);
   }, [selectedIndex]);
@@ -275,6 +291,13 @@ export default function VirtualAssisstantAdmin() {
       <div className="">
         <Card className="bg-primary-blue-100/20">
           <CardContent className="flex flex-col gap-8">
+            <div className="flex justify-between gap-4">
+              <Input
+                placeholder="search by name or email"
+                className="max-w-68"
+              ></Input>
+              <AddVirtualAssistant></AddVirtualAssistant>
+            </div>
             <DynamicTable
               itemsPerPage={10}
               data={mockData}

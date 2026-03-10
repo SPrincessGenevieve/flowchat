@@ -8,7 +8,7 @@ import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Label } from "@/components/ui/label";
 import { toastUI } from "@/components/ui/Toaster";
 
-interface UserDetailT {
+export interface UserDetailT {
   first_name: string;
   last_name: string;
   middle_name: string;
