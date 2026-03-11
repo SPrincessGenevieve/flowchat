@@ -27,7 +27,7 @@ export default function Phase() {
         <Label className="font-semibold">Phase Completion</Label>
         <div className="flex flex-col gap-4 mt-4">
           {progress.map((item, i) => (
-            <div className="flex flex-col gap-4">
+            <div key={i} className="flex flex-col gap-4">
               <div className="w-full flex items-center justify-between">
                 <Label>{item.label}</Label>
                 <Label>{item.value}%</Label>

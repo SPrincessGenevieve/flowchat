@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 // Column type
 export interface Column<T> {
   key: keyof T | string; // key in data object or special string
-  title: string;
+  title: string | React.ReactNode;
   render?: (row: T) => React.ReactNode; // optional custom cell renderer
 }
 
@@ -21,12 +21,16 @@ interface DynamicTableProps<T> {
   data: T[];
   columns: Column<T>[];
   itemsPerPage?: number;
+  onClickRowBody?: (row: T) => void;
+  details?: any;
 }
 
 export default function DynamicTable<T>({
   data,
   columns,
   itemsPerPage = 5,
+  onClickRowBody,
+  details,
 }: DynamicTableProps<T>): JSX.Element {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(data.length / itemsPerPage);
@@ -61,7 +65,12 @@ export default function DynamicTable<T>({
 
         <TableBody>
           {paginatedData.map((row, rowIndex) => (
-            <TableRow key={rowIndex}>
+            <TableRow
+              onClick={() => {
+                onClickRowBody?.(row); // Call the function with the row
+              }}
+              key={rowIndex}
+            >
               {columns.map((col) => (
                 <TableCell key={col.key as string}>
                   {col.render ? col.render(row) : (row as any)[col.key]}

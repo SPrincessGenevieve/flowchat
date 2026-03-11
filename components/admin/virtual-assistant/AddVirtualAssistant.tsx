@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toastUI } from "@/components/ui/Toaster";
 
 // 1️⃣ Define Zod schema
 const vaSchema = z.object({
@@ -51,13 +52,8 @@ export default function AddVirtualAssistant() {
   });
 
   const onSubmit = (data: VAFormValues) => {
-    toast("User Created Successfully", {
-      description: (
-        <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
-          <code>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-      position: "bottom-right",
+    toastUI.success({
+      title: "User Created Successfully",
     });
     form.reset();
   };

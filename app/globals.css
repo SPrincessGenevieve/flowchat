@@ -212,6 +212,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .virtual-info-cont {
     min-width: 90%;
   }
+  .eod-report-dialog {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 810px) {
@@ -298,6 +301,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .daily-summary-cont {
     grid-template-columns: repeat(1, 1fr);
   }
+  .card-account-cont {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 @media (max-width: 460px) {
@@ -321,6 +327,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     min-width: 100%;
     height: 100%;
     border-radius: 0%;
+  }
+  .eod-report-dialog {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 

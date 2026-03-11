@@ -57,7 +57,7 @@ export default function ActiveTrainees() {
           </TableHeader>
           <TableBody>
             {mockData.map((item, i) => (
-              <TableRow className="border-none">
+              <TableRow key={i} className="border-none">
                 <TableCell>
                   <Label>{item.name}</Label>
                 </TableCell>

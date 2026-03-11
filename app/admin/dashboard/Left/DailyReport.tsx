@@ -59,7 +59,7 @@ export default function DailyReport() {
           </TableHeader>
           <TableBody>
             {mockData.map((item, i) => (
-              <TableRow className="border-none">
+              <TableRow key={i} className="border-none">
                 <TableCell>
                   <Label>{item.date}</Label>
                 </TableCell>

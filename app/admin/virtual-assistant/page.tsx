@@ -188,7 +188,7 @@ export default function VirtualAssisstantAdmin() {
   const columns: Column<UserDetailT>[] = [
     {
       key: "name",
-      title: "Name",
+      title: <Label className="text-white/40">Name</Label>,
       render: (row) => (
         <Label>
           {row.first_name} {row.last_name}
@@ -197,12 +197,12 @@ export default function VirtualAssisstantAdmin() {
     },
     {
       key: "email",
-      title: "Email",
+      title: <Label className="text-white/40">Email</Label>,
       render: (row) => <Label>{row.email}</Label>,
     },
     {
       key: "status",
-      title: "Status",
+      title: <Label className="text-white/40">Status</Label>,
       render: (row) => (
         <div className="flex">
           <div
@@ -223,12 +223,12 @@ export default function VirtualAssisstantAdmin() {
     },
     {
       key: "training",
-      title: "Training",
+      title: <Label className="text-white/40">Training</Label>,
       render: (row) => <Label>{row.training}</Label>,
     },
     {
       key: "certificate",
-      title: "Certified",
+      title: <Label className="text-white/40">Certified</Label>,
       render: (row) => (
         <div className="w-full flex gap-2 items-center">
           {row.certificate ? (
@@ -246,7 +246,7 @@ export default function VirtualAssisstantAdmin() {
     },
     {
       key: "action",
-      title: "Action",
+      title: <Label className="text-white/40">Action</Label>,
       render: (row) => (
         <DropdownMenu>
           <DropdownMenuTrigger className="w-full">
