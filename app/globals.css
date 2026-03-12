@@ -316,6 +316,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     justify-content: space-between;
     width: 100%;
   }
+  .va-cert-hrader-cont {
+    flex-wrap: wrap-reverse;
+  }
+  .progress-va {
+    width: 100%;
+  }
+  .input-va-cont {
+    width: 100%;
+  }
+  .btn-w {
+    width: 100%;
+  }
 }
 
 @media (max-width: 445px) {

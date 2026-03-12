@@ -42,13 +42,13 @@ export default function CertHeaderAdmin({ data }: CertHeaderT) {
   }, [selectedUser, data]);
 
   return (
-    <Card className="bg-black/20 border border-primary-blue-100/70">
-      <CardContent className="flex justify-between items-start gap-4">
+    <Card className="bg-black/20 border  border-primary-blue-100/70">
+      <CardContent className="flex  va-cert-hrader-cont justify-between items-start gap-4">
         {/* Dropdown */}
         <DropdownMenu>
-          <DropdownMenuTrigger className="flex flex-col gap-2">
+          <DropdownMenuTrigger className="flex flex-col gap-2 input-va-cont">
             <Label>Select Virtual Assistant</Label>
-            <div className="flex justify-between items-center p-2 border border-primary-blue-100/50 rounded-sm w-80">
+            <div className="flex justify-between items-center p-2 border border-primary-blue-100/50 rounded-sm min-w-50">
               <Label className="truncate">{selectedUser}</Label>
               <IconChevronDown size={18} />
             </div>
@@ -78,7 +78,7 @@ export default function CertHeaderAdmin({ data }: CertHeaderT) {
         </DropdownMenu>
 
         {/* Progress & Status */}
-        <div className="flex flex-col items-end gap-2">
+        <div className="flex flex-col items-end gap-2 progress-va">
           <Label className="text-right font-semibold">
             {progress}/{item?.progress.length ?? 0}
           </Label>

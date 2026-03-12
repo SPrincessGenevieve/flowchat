@@ -43,7 +43,7 @@ export default function ProgressSection() {
           </div>
 
           <Dialog>
-            <DialogTrigger>
+            <DialogTrigger className="btn-w">
               <div className="bg-linear-90 cursor-pointer from-primary-blue-100 to-purple-400 rounded-[5px] h-8 flex items-center justify-center p-2 px-4">
                 <Label>Continue Learning</Label>
               </div>

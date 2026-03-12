@@ -107,8 +107,6 @@ export default function Modules() {
     // window.open(href, "_blank", "noopener,noreferrer");
   };
 
-
-
   const mod = modules.find((i) => i.status === "Pending");
   const less = mod?.lessons.find((i) => i.status === "Pending");
 
@@ -184,16 +182,17 @@ export default function Modules() {
                                 {lesson.title}
                               </Label>
                             </div>
-                            <div className="w-full flex flex-wrap justify-end mt-4 gap-4">
+                            <div className="w-full  flex flex-wrap justify-end mt-4 gap-4">
                               <Button
                                 onClick={() => navResources(lesson.href)}
-                                className="w-40 cursor-pointer bg-transparent text-primary-blue-100 border-primary-blue-100 hover:bg-purple-400/30 hover:text-white"
+                                className="w-40 btn-w cursor-pointer bg-transparent text-primary-blue-100 border-primary-blue-100 hover:bg-purple-400/30 hover:text-white"
                                 variant={"outline"}
                               >
                                 View Resouces <IconLink></IconLink>
                               </Button>
                               <Dialog>
                                 <DialogTrigger
+                                  className="btn-w"
                                   disabled={
                                     lesson.isLocked
                                       ? true
@@ -215,7 +214,7 @@ export default function Modules() {
                                         ? "ghost"
                                         : "default"
                                     }
-                                    className={`w-40 cursor-pointer ${lesson.status === "Complete" ? "bg-linear-90 from-green-500 hover:text-white to-green-700 text-white" : ""}`}
+                                    className={` btn-w w-40 cursor-pointer ${lesson.status === "Complete" ? "bg-linear-90 from-green-500 hover:text-white to-green-700 text-white" : ""}`}
                                   >
                                     {lesson.isLocked
                                       ? "Locked"

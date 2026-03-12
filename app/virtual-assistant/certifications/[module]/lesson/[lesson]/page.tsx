@@ -296,7 +296,7 @@ export default function ModulesPage() {
                                 <Button
                                   onClick={() => setOpen(false)}
                                   variant={"ghost"}
-                                  className="bg-transparent hover:bg-primary-blue-100/20 border border-primary-blue-100 hover:text-white text-primary-blue-100"
+                                  className="bg-transparent w-full hover:bg-primary-blue-100/20 border border-primary-blue-100 hover:text-white text-primary-blue-100"
                                 >
                                   Review
                                 </Button>

@@ -130,7 +130,9 @@ export default function CoursesContent() {
 
               <div className="flex flex-col gap-2">
                 {item.lesson.map((item2, ii) => (
-                  <div
+                  <Link
+                    href={item2.link}
+                    target="_blank"
                     key={ii}
                     className="flex justify-between gap-2 py-2  border-b-2 border-transparent hover:border-primary-blue-100 transition ease-in-out"
                   >
@@ -139,7 +141,7 @@ export default function CoursesContent() {
                       className="text-white"
                       size={16}
                     ></IconArrowRight>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </CardContent>

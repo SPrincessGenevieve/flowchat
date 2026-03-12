@@ -53,7 +53,7 @@ export default function ProgressSection() {
             </Label>
           </div>
           <div>
-            <Button className="" onClick={handleJourney}>
+            <Button className="btn-w" onClick={handleJourney}>
               Continue Learning <IconArrowRight></IconArrowRight>{" "}
               {loading && <Spinner></Spinner>}
             </Button>

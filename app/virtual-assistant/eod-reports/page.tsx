@@ -40,7 +40,7 @@ export default function EODReports() {
         desc={"Submit your End of Day report and track your daily performance."}
       ></WelcomeSection>
       <div className="w-full flex items-center justify-end">
-        {completedCount === 17 ? (
+        {completedCount !== 17 ? (
           <Button onClick={() => setOpen(true)}>Submit EOD Report</Button>
         ) : (
           <Tooltip>

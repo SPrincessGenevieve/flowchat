@@ -14,7 +14,7 @@ function AdminContent({ children }: { children: React.ReactNode }) {
     <div className="flex relative w-full h-full">
       <SidebarAdmin />
       <div className="w-full">
-        <div className="menubar-doc w-full hidden items-center gap-2 fixed bg-primary-blue-500 h-14 px-4 shadow-[0_2px_40px_0_rgb(0,122,122)]">
+        <div className="menubar-doc z-50 w-full hidden items-center gap-2 fixed bg-primary-blue-500 h-14 px-4 shadow-[0_2px_40px_0_rgb(0,122,122)]">
           <IconMenu2
             onClick={toggleSidebar}
             className="text-white cursor-pointer"

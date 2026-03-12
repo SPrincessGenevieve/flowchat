@@ -65,7 +65,7 @@ export default function AddVirtualAssistant() {
       </DialogTrigger>
 
       <DialogContent
-        className={`overflow-y-auto virtual-info-cont w-full min-w-200 bg-primary-blue-500 shadow-[0_0_10px_0px_#ffffff]`}
+        className={`overflow-y-auto flex flex-col gap-8 virtual-info-cont w-full min-w-200 bg-primary-blue-500 shadow-[0_0_10px_0px_#ffffff]`}
       >
         <DialogHeader>
           <DialogTitle>
